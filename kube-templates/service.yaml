@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-retry-ot-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: kafka-retry-test
+  ports:
+    - name: http-main
+      port: 9099
+      targetPort: 9099
+
+#    - name: http-car
+#      port: 9095
+#      targetPort: 9095
+

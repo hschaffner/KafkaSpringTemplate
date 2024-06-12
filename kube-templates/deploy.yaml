@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-retry-test
+#  annotations:
+#    sidecar.jaegertracing.io/inject: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-retry-test
+  template:
+    metadata:
+      #      annotations:
+      #        sidecar.opentelemetry.io/inject: "true"
+      #        instrumentation.opentelemetry.io/inject-java: "true"
+      #        instrumentation.opentelemetry.io/container-names: "ServerApp"
+      labels:
+        app: kafka-retry-test
+
+    spec:
+      #      serviceAccountName: protofilter
+      containers:
+        - name: server
+          image: docker.io/heinz57/kafka-retry-intercept
+          ports:
+            - containerPort: 9099
+
+          env:
+            #            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+            #              value: http://my-jaeger-collector-headless:4317
+            #            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+            #              value: http://my-jaeger-collector-headless:4317
+
+
+
+            #            - OTEL_EXPORTER_OTLP_ENDPOINT = http://simplest-collector:4317
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://my-jaeger-collector:4317
+              #              value: http://simplest-collector:4317
+            #              value: http://localhost:4318/v1/traces
+            - name: OTEL_METRICS_EXPORTER
+              value: none
+            - name: OTEL_SERVICE_NAME
+              value: RetryServerApp
+          #            - name: OTEL_TRACES_EXPORTER
+          #              value: otlp
+          #            - name: OTEL_PROPAGATORS
+          #              value: tracecontext,baggage,b3
+          #            - name: OTEL_EXPORTER_JAEGER_ENDPOINT
+          #              value: http://my-jaeger-collector.confluent.svc:14250
+          #              value: my-jaeger-collector-headless.confluent.svc:14250
+
+          readinessProbe:
+            tcpSocket:
+              port: 9099
+            initialDelaySeconds: 5
+
+#          readinessProbe:
+#            tcpSocket:
+#              port: 30001
+#            initialDelaySeconds: 5import:
+
+

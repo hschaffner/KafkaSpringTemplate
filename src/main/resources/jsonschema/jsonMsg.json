@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "JsonMsg",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "first_name": "Heinz",
+      "last_name": "Schafffner",
+      "customer_id": 1234567890
+    }
+  ],
+  "required": [
+    "first_name",
+    "last_name",
+    "customer_id"
+  ],
+  "properties": {
+    "first_name": {
+      "$id": "#/properties/first_name",
+      "type": "string",
+      "title": "Client Firstname",
+      "description": "A Customer's first name",
+      "default": "",
+      "examples": [
+        "Heinz"
+      ]
+    },
+    "last_name": {
+      "$id": "#/properties/last_name",
+      "type": "string",
+      "title": "Client Lastname",
+      "description": "A Customer's last name",
+      "default": "",
+      "examples": [
+        "Schaffner"
+      ]
+    },
+    "customer_id": {
+      "$id": "#/properties/cust_id",
+      "type": "integer",
+      "title": "Customer ID",
+      "description": "The indexed ID for a customer",
+      "default": "",
+      "examples": [
+        1234567890
+      ]
+    }
+
+  }
+}

@@ -1,0 +1,32 @@
+apiVersion: skaffold/v2beta25
+kind: Config
+metadata:
+  name: kafkaRetryOT
+deploy:
+  kubectl:
+    manifests:
+      - kube-templates/deploy.yaml
+      - kube-templates/service.yaml
+
+#package hierarchy for project is from the main pom.xml group ID
+build:
+  tagPolicy:
+    sha256: { }
+  artifacts:
+    - image: docker.io/heinz57/kafka-retry-intercept
+      jib:
+        project: io.confluent.heinz.interceptor.template:KafkaSpringTemplateInterceptor
+        args:
+          - -Dmaven.test.skip=true
+
+profiles:
+  # use the cloudbuild profile to build images using Google Cloud Build
+  - name: cloudbuild
+    build:
+      googleCloudBuild: {}
+  # use the dockerfile profile to build images using Docker instead of Jib
+  #- name: dockerfile
+  #  build:
+  #    artifacts:
+  #      - image: kube-sidecar-test
+

@@ -1,0 +1,19 @@
+{
+   "namespace": "io.confluent.heinz.interceptor.template",
+   "type": "record",
+   "name": "avroMsg",
+   "fields": [
+     {
+       "name": "first_name",
+       "type": "string"
+     },
+     {
+       "name": "last_name",
+       "type": "string"
+     },
+     {
+       "name": "customer_id",
+       "type": "int"
+     }
+   ]
+ }

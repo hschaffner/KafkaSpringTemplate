@@ -1,0 +1,37 @@
+bootstrap.servers: "<bootstrap-server>:9092"
+
+schema.registry.url: "<Schema Registry URL>"
+schema.registry.basic.auth.user.info: "<Registry Username>:<Registry Password>"
+basic.auth.credentials.source: "USER_INFO"
+sasl.mechanism: "PLAIN"
+sasl.jaas.config: "org.apache.kafka.common.security.plain.PlainLoginModule   required username='<Username>'   password='<Password>';"
+security.protocol: "SASL_SSL"
+client.dns.lookup: "use_all_dns_ips"
+acks: "all"
+enable.idempotence: "true"
+transactional.id: "prod-1"
+
+consume.group.id: "KafkaTemplateID"
+producer.id: "SpringKafkaTemplate-1"
+#consume.enable.auto.commit: "true"
+consume.enable.auto.commit: "false"
+consume.isolation.level: "read_committed"
+
+topic: "SpringTemplateTopic"
+
+# REST listening port for POST Request
+server:
+  port: 9099
+
+
+logging:
+level:
+root: INFO
+io.confluent.heinz: ERROR
+org.apache.kafka.clients.FetchSessionHandler: ERROR
+io.confluent.heinz.interceptor.restController: INFO
+io.confluent.heinz.interceptor.ConfluentSession: INFO
+io.confluent.heinz.interceptor.template.KafkaSpringTemplateApplication: INFO
+
+
+
