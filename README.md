@@ -51,7 +51,7 @@ Most of the Confluent session configuration parameters are referenced to the "ap
 session parameters are hard-coded directly in the "KafkaSpringTemplateApplication" application. All the relevant Spring Beans are found in the 
 same file and are also hard-coded for this sample.
 
-OpenTelemetry is configured in the REST Controller application. The producer and consumer beans have been configured to use the OpenTelemetry Kafka Interceptors to 
+OpenTelemetry is configured in the "initConfiguration" application, which is called from main() in the "KafkaSpringTemplateApplication". The producer and consumer beans have been configured to use the OpenTelemetry Kafka Interceptors to 
 pass the context trace information in the headers of the Kafka records.
 
 A simple Kubernetes template is included to deploy the Spring application and another template creates the load-balancer and exposes the IP address to send a JSON message to the REST controller. 
