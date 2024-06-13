@@ -13,7 +13,7 @@ build:
   tagPolicy:
     sha256: { }
   artifacts:
-    - image: docker.io/heinz57/kafka-retry-intercept
+    - image: docker.io/YOURACCOUNT/kafka-retry-intercept
       jib:
         project: io.confluent.heinz.interceptor.template:KafkaSpringTemplateInterceptor
         args:

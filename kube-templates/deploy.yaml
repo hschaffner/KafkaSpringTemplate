@@ -22,7 +22,7 @@ spec:
       #      serviceAccountName: protofilter
       containers:
         - name: server
-          image: docker.io/heinz57/kafka-retry-intercept
+          image: docker.io/YOURACCOUNT/kafka-retry-intercept
           ports:
             - containerPort: 9099
 
